@@ -1,25 +1,3 @@
-// const mongoose = require("mongoose");
-
-// const orderSchema = new mongoose.Schema(
-//   {
-//     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-//     items: [
-//       {
-//         product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
-//         quantity: { type: Number },
-//         price: { type: Number },
-//       },
-//     ],
-//     totalAmount: { type: Number, required: true },
-//     status: { type: String, default: "pending" }, // pending, shipped, delivered
-//     address: { type: String, required: true },
-//   },
-//   { timestamps: true }
-// );
-
-// module.exports = mongoose.model("Order", orderSchema);
-
-
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
@@ -46,6 +24,7 @@ const orderSchema = new mongoose.Schema({
   ],
   totalAmount: { type: Number, required: true },
   status: { type: String, default: "pending" },
+  estimatedDelivery: { type: Date, default: () => new Date(Date.now() + 4 * 24 * 60 * 60 * 1000) },
 }, { timestamps: true });
 
 module.exports = mongoose.model("Order", orderSchema);
